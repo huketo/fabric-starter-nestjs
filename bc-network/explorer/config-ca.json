@@ -1,0 +1,17 @@
+{
+	"network-configs": {
+		"org1-network": {
+			"name": "org1-network",
+			"profile": "./connection-profile/connection-ca-org1.json"
+		},
+		"org2-network": {
+			"name": "org2-network",
+			"profile": "./connection-profile/connection-ca-org2.json"
+		},
+		"org3-network": {
+			"name": "org3-network",
+			"profile": "./connection-profile/connection-ca-org3.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

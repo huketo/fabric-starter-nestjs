@@ -1,0 +1,76 @@
+{
+	"name": "network-org${ORG}",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw",
+			"affiliation": "org1.department1"
+		},
+		"caCredential": {
+			"id": "admin",
+			"password": "adminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "Org${ORG}MSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.org${ORG}.example.com": {},
+				"peer1.org${ORG}.example.com": {}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"Org${ORG}MSP": {
+			"mspid": "Org${ORG}MSP",
+			"peers": ["peer0.org${ORG}.example.com", "peer1.org${ORG}.example.com"],
+			"certificateAuthorities": ["ca.org${ORG}.example.com"]
+		}
+	},
+	"peers": {
+		"peer0.org${ORG}.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/org${ORG}.example.com/peers/peer0.org${ORG}.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.org${ORG}.example.com:${P0PORT}"
+		},
+		"peer1.org${ORG}.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/org${ORG}.example.com/peers/peer1.org${ORG}.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer1.org${ORG}.example.com:${P1PORT}"
+		}
+	},
+	"certificateAuthorities": {
+		"ca.org${ORG}.example.com": {
+			"url": "https://localhost:${CAPORT}",
+			"httpOptions": {
+				"verify": false
+			},
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/org${ORG}.example.com/ca/ca.org${ORG}.example.com-cert.pem"
+			},
+			"caName": "ca.org${ORG}.example.com"
+		}
+	}
+}
